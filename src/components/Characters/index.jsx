@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import CharacterItem from './CharacterItem'
 // import { setIsLoadingChars, loadCharacters } from '../../redux/core/actions/charactersActions'
-import { setCharacters, isLoading } from '../../redux/core/reducers/charactersSlice'
+import * as action from '../../redux/core/reducers/charactersSlice'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux"
 import { Spinner, Container, Row, Col } from "reactstrap";
@@ -11,11 +11,15 @@ import { useSelector, useDispatch } from 'react-redux'
 // const Characters = (props) => {
 const Characters = () => {
     const dispatch = useDispatch();
+    const {characters} = useSelector(state => state.characters)
+    console.log("CHARACTERS EM ", characters)
     useEffect(() => {
         // props.setIsLoadingChars()
         // props.loadCharacters('people')
-        dispatch(isLoading())
-        dispatch(setCharacters('people'))
+        dispatch(action.isLoading())
+        
+        console.log("Estou ")
+        dispatch(action.setCharacters('people'))
     }, [])
 
     return (
@@ -25,7 +29,7 @@ const Characters = () => {
                     <Row>
                         <Col xs={{ size: '4', offset: '4' }} className="d-flex justify-content-center align-items-center">
                             {/* <Spinner className={`mb-3 ${props.isLoading ? '' : 'invisible'}`} color="warning" /> */}
-                            <Spinner className={`mb-3 ${isLoading ? '' : 'invisible'}`} color="warning" />
+                            {/* <Spinner className={`mb-3 ${isLoading ? '' : 'invisible'}`} color="warning" /> */}
                         </Col>
                     </Row>
                 </Container>

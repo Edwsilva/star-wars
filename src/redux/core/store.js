@@ -1,11 +1,10 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware } from "redux";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import combinedReducers from './combinedReducers'
-import charactersReducer from './reducers/charactersSlice'
-import sagas from '../sagas/'
-import createSaga from 'redux-saga'
+import combinedReducers from "./combinedReducers";
+import sagas from "../sagas/";
+import createSagaMiddleware from "redux-saga";
 
-const sagaMiddleware = createSaga()
+const sagaMiddleware = createSagaMiddleware();
 
 // const dev = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
@@ -16,10 +15,15 @@ const sagaMiddleware = createSaga()
 //         // , dev
 //     )
 // )
-const store = createStore(charactersReducer,
- applyMiddleware(sagaMiddleware)
-);
+// const reducer = combinedReducers({
+//   charactersReducer,
+// });
 
-sagaMiddleware.run(sagas)
+const store = configureStore({
+  reducer: combinedReducers,
+  middleware: [sagaMiddleware],
+});
+
+sagaMiddleware.run(sagas);
 
 export default store;
