@@ -23,7 +23,7 @@ const Layout = (props) => {
         <Container fluid className="bg-dark py-1">
           <Row>
             <Col>
-              <p className="text-center">Criado por <a className="text-warning" href="https://gustavokuze.com" target="_blank" rel="noopener noreferrer">Gustavo kuze</a></p>
+              <p className="text-center">Criado por <a className="text-warning" href="https://gustavokuze.com" target="_blank" rel="noopener noreferrer">Edwilson da Silva</a></p>
             </Col>
           </Row>
         </Container>

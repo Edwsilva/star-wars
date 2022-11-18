@@ -7,14 +7,16 @@ function* loadCharsSaga(action) {
   console.log("ACTION", action.payload);
   let jsonResponse = yield call(swapi, action.payload);
 
-  console.log("JOSNNNNN", jsonResponse);
-  yield put({ type: actions.setCharacters, payload: jsonResponse });
-  //   yield put(actions.setCharacters(jsonResponse));
+  //  TODAS AS CHAMADAS ABAIXO FUNCIONAM...
+  // yield put(actions.getCharactersSuccess(jsonResponse.results));
+   //  yield put({ type: actions.getCharactersSuccess, payload: jsonResponse.results });
+     yield put({ type: actions.getCharactersSuccess.type, payload: jsonResponse.results });
+  
 }
 
 export default function* rootSaga() {
   yield all([
     // takeLatest(types.LOAD_CHARACTERS_SAGA, loadCharsSaga),
-    takeLatest(actions.setCharacters, loadCharsSaga),
+    takeLatest('characters/getCharacters', loadCharsSaga),
   ]);
 }

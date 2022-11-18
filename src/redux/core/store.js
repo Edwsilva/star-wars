@@ -20,7 +20,7 @@ const sagaMiddleware = createSagaMiddleware();
 // });
 
 const store = configureStore({
-  reducer: combinedReducers,
+  reducer: {films: combinedReducers},
   middleware: [sagaMiddleware],
 });
 

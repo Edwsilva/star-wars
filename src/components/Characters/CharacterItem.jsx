@@ -12,9 +12,9 @@ const CharInfo = infoProps =>
     </Row>
 
 const CharacterItem = (props) => {
-
-    let [isOpen, setOpen] = useState(props.isOpen)
-
+    // valores undefined, null
+    let [isOpen, setOpen] = useState(false) // useState(null) useState(undefined) useState(props.isOpend) é false no javascript
+    
     return (
         <>
             <Button onClick={() => setOpen(!isOpen)} outline block color="warning">{props.character.name || 'Informações do personagem'}</Button>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import CharacterItem from './CharacterItem'
-// import { setIsLoadingChars, loadCharacters } from '../../redux/core/actions/charactersActions'
+ //import { setIsLoadingChars, loadCharacters } from '../../redux/core/actions/charactersActions'
 import * as action from '../../redux/core/reducers/charactersSlice'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux"
@@ -11,16 +11,17 @@ import { useSelector, useDispatch } from 'react-redux'
 // const Characters = (props) => {
 const Characters = () => {
     const dispatch = useDispatch();
-    const {characters} = useSelector(state => state.characters)
+    const {characters, isLoading} = useSelector(state => state.films.characters)
     console.log("CHARACTERS EM ", characters)
+    console.log("IsLoading ", isLoading)
     useEffect(() => {
         // props.setIsLoadingChars()
         // props.loadCharacters('people')
-        dispatch(action.isLoading())
+       // dispatch(action.isLoading())
         
         console.log("Estou ")
-        dispatch(action.setCharacters('people'))
-    }, [])
+        dispatch(action.getCharacters('people'))
+    }, [dispatch])
 
     return (
         <div className="mb-5">
@@ -28,16 +29,15 @@ const Characters = () => {
                 <Container>
                     <Row>
                         <Col xs={{ size: '4', offset: '4' }} className="d-flex justify-content-center align-items-center">
-                            {/* <Spinner className={`mb-3 ${props.isLoading ? '' : 'invisible'}`} color="warning" /> */}
-                            {/* <Spinner className={`mb-3 ${isLoading ? '' : 'invisible'}`} color="warning" /> */}
+                            <Spinner className={`mb-3 ${isLoading ? '' : 'invisible'}`} color="warning" /> 
                         </Col>
                     </Row>
                 </Container>
             }
             {
-                // props.characters ? props.characters.map((c, i) =>
-                // characters ? props.characters.map((c, i) =>
-                //     <CharacterItem key={`${c.name}`} character={c} />) : ''
+                characters ? characters.map((c, i) => {
+                    console.log("CC" ,c)
+                    return <CharacterItem key={`${c.name}`} character={c} />}) : ''
             }
         </div>
     )
