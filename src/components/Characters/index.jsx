@@ -13,8 +13,6 @@ const Characters = () => {
     const dispatch = useDispatch();
     const {characters, isLoading} = useSelector(state => state.films.characters)
     console.log("characters vindo do state ", characters)
-    const filmsPage = characters.results
-
     console.log("IsLoading ", isLoading)
     useEffect(() => {
         // props.setIsLoadingChars()
@@ -37,7 +35,8 @@ const Characters = () => {
                 </Container>
             }
             {
-                filmsPage ? filmsPage.map((c, i) => {
+                characters.results ? characters.results.map((c, i) => {
+                // filmsPage ? filmsPage.map((c, i) => {
                     // console.log("CC" ,c)
                     return <CharacterItem key={`${c.name}`} character={c} />}) : ''
             }
