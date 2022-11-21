@@ -10,10 +10,14 @@ const swapi = async (path, params) => {
 };
 
 const extractPathFromUrl = (url) => {
+  console.log("extractPathFromUrl ", url)
   let rgx = /(https?:\/\/\w+\.\w+\/api\/)/g;
+  console.log("rgx *********** ", rgx)
   let extractedPath = url;
+
   if (rgx.test(url)) {
     extractedPath = url.replace(rgx, "");
+    console.log(" extractedPath  ", extractedPath)
   }
   return extractedPath;
 };

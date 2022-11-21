@@ -12,7 +12,9 @@ import { useSelector, useDispatch } from 'react-redux'
 const Characters = () => {
     const dispatch = useDispatch();
     const {characters, isLoading} = useSelector(state => state.films.characters)
-    console.log("CHARACTERS EM ", characters)
+    console.log("characters vindo do state ", characters)
+    const filmsPage = characters.results
+
     console.log("IsLoading ", isLoading)
     useEffect(() => {
         // props.setIsLoadingChars()
@@ -35,8 +37,8 @@ const Characters = () => {
                 </Container>
             }
             {
-                characters ? characters.map((c, i) => {
-                    console.log("CC" ,c)
+                filmsPage ? filmsPage.map((c, i) => {
+                    // console.log("CC" ,c)
                     return <CharacterItem key={`${c.name}`} character={c} />}) : ''
             }
         </div>

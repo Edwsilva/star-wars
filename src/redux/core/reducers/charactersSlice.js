@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const charactersSlice = createSlice({
   name: "characters",
   initialState: {
-    characters: [],
-    isLoading: true,
-    nextUrl:'',
-    previousUrl:''
+    characters: {},
+    // isLoading: true,
+    // nextUrl:null,
+    // previousUrl:null
   },
-
+ 
   reducers: {
     getCharacters: (state) => {
       console.log('Estou no reducer')
@@ -16,6 +16,7 @@ const charactersSlice = createSlice({
 
     },
     getCharactersSuccess: (state, action) => {
+      console.log("GET CHARACTERS &&&&& ", action.payload )
       state.characters = action.payload;
       state.isLoading = false;
       state.nextUrl = action.payload.next;

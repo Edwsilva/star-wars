@@ -14,8 +14,10 @@ const Pagination = () => {
     const {previousUrl, nextUrl, isLoading} = useSelector(state => state.films.characters)
 
     console.log("PreviosURL ", previousUrl)
+    console.log("NextURL ", nextUrl)
 
     const paginateTo = url => {
+        console.log("URL ", url)
         dispatch(action.getCharacters(extractPathFromUrl(url)))
         // props.setIsLoadingChars()
         // props.loadCharacters(extractPathFromUrl(url))
